@@ -112,6 +112,19 @@ let make =
   ReLoadable.lazy_(() => ReLoadable.import(UnsafePlaceholder.make, "@my-component-lib/button"));
 ```
 
+or
+
+```reason
+/* LazyButton.re */
+
+[@bs.val] [@react.component]
+external make: (~text: string) => React.element = "default";
+
+/* "@my-component-lib/button" should have a default export. */
+let make =
+  ReLoadable.lazy_(() => ReLoadable.import(make, "@my-component-lib/button"));
+```
+
 2) Render lazy component anywhere in your [ReasonReact](https://github.com/reasonml/reason-react) app with **"React.Suspense"**.
 
 ```reason
